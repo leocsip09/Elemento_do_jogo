@@ -3,34 +3,39 @@
 #include <iostream>
 # include "Nivel.h"
 # include "MultitonNivel.h"
+# include <memory>
 
 class SelectorDeNiveles {
 private:
-    sf::RenderWindow* SeleNiv;
+    std::unique_ptr<sf::RenderWindow> SeleNiv;
+    std::unique_ptr<sf::Font> fuente2;
+    std::unique_ptr<sf::Texture> imagen;
+    std::unique_ptr<sf::Sprite> fondo;
+    std::vector<sf::Text> Niveles;
+    std::vector<std::unique_ptr<sf::RectangleShape>> cerrarVentana;
+    
     int pos;
     bool presionado, laseleccion;
-    sf::Font* fuente2;
-    sf::Texture* imagen;
-    sf::Sprite* fondo;
-    std::vector<sf::Text> Niveles;
+    
+    
     sf::Vector2i pos_mouse;
     sf::Vector2f mouse_coord;
     std::vector<const char*> niv;
     std::vector<sf::Vector2f> coords;
     std::vector<std::size_t> tam;
-    sf::RectangleShape* cerrarVentana;
+    
 
 
 public:
     SelectorDeNiveles() {
 
-        SeleNiv = new sf::RenderWindow();
-        fuente2 = new sf::Font();
-        imagen = new sf::Texture();
-        fondo = new sf::Sprite();
-        cerrarVentana = new sf::RectangleShape();
+        SeleNiv = std::make_unique<sf::RenderWindow>();
+        fuente2 = std::make_unique<sf::Font>();
+        imagen = std::make_unique<sf::Texture>();
+        fondo = std::make_unique<sf::Sprite>();
+        cerrarVentana.push_back(std::make_unique<sf::RectangleShape>());
         estab_val_Sel();
-        // Aquí puedes inicializar los miembros de la clase si es necesario
+        // AquÃ­ puedes inicializar los miembros de la clase si es necesario
     }
 
     void eventos_bucle() {
@@ -42,7 +47,7 @@ public:
             pos_mouse = sf::Mouse::getPosition(*SeleNiv);
             mouse_coord = SeleNiv->mapPixelToCoords(pos_mouse);
             if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-                if (cerrarVentana->getGlobalBounds().contains(mouse_coord)) {
+                if (cerrarVentana[0]->getGlobalBounds().contains(mouse_coord)) {
                     std::cout << "De regreso al menu principal" << '\n';
                     SeleNiv->close();
                 }
@@ -93,11 +98,11 @@ public:
             if (laseleccion && pos >= 1) {
                 Nivel* nivelSeleccionado = MultitonNivel::getNivel(pos);
                 // Ahora puedes trabajar con el nivel seleccionado, como ejecutar su bucle principal, actualizar y dibujar.
-                if (nivelSeleccionado->estaActivo()) {
+                while (nivelSeleccionado->estaActivo()) {
                     nivelSeleccionado->actualizar(*SeleNiv);
                     nivelSeleccionado->dibujar(*SeleNiv);
                 }
-                laseleccion = false; // Restablecemos el indicador de selección para futuros usos
+                laseleccion = false; // Restablecemos el indicador de selecciÃ³n para futuros usos
             }
 
         }
@@ -132,16 +137,11 @@ public:
         }
         Niveles[1].setOutlineThickness(4);
         pos = 1;
-        cerrarVentana->setSize(sf::Vector2f(23, 26));
-        cerrarVentana->setPosition(1178, 39);
-        cerrarVentana->setFillColor(sf::Color::Transparent);
+        cerrarVentana[0]->setSize(sf::Vector2f(23, 26));
+        cerrarVentana[0]->setPosition(1178, 39);
+        cerrarVentana[0]->setFillColor(sf::Color::Transparent);
       
     }
-    ~SelectorDeNiveles() {
-        delete SeleNiv;
-        delete fuente2;
-        delete imagen;
-        delete fondo;
-    }
+    ~SelectorDeNiveles() {}
 };
 
