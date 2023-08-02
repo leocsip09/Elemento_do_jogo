@@ -4,19 +4,19 @@
 NivelNivel1::NivelNivel1() : Nivel(), nivel1Ventana(sf::VideoMode(1280, 720), "Nivel 1"), nivel1Activo(true) {
     imagen = new sf::Texture();
     fondo = new sf::Sprite();
-    cerrarVentana = new sf::RectangleShape();
+    cerrarNivel1 = new sf::RectangleShape();
+    std::cout << "Se inializo el nivel 1 desde multiton" << std::endl;
 }
 
 
 void NivelNivel1::inicializar() {
-    // L骻ica de inicializaci髇 para el nivel 1
-    std::cout << "Se inializo el nivel 1 desde multiton" << std::endl;
-    
+    // L贸gica de inicializaci贸n para el nivel 1
+   
 }
 
 void NivelNivel1::actualizar(sf::RenderWindow& ventana) {
-    // L骻ica de actualizaci髇 para el nivel 1
-    std::cout << "Se esta actualizando el nivel 1" << std::endl;
+    // L贸gica de actualizaci贸n para el nivel 1
+    
     if (nivel1Activo) {
         sf::Event event;
         while (nivel1Ventana.pollEvent(event)) {
@@ -27,8 +27,10 @@ void NivelNivel1::actualizar(sf::RenderWindow& ventana) {
         }
         pos_mouse = sf::Mouse::getPosition(nivel1Ventana);
         mouse_coord = nivel1Ventana.mapPixelToCoords(pos_mouse);
+        
+        
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-            if (cerrarVentana->getGlobalBounds().contains(mouse_coord)) {
+            if (cerrarNivel1->getGlobalBounds().contains(mouse_coord)) {
                 std::cout << "Nivel 1 cerrado" << '\n';
                 nivel1Ventana.close();
                 nivel1Activo = false;
@@ -38,20 +40,20 @@ void NivelNivel1::actualizar(sf::RenderWindow& ventana) {
 }
 
 void NivelNivel1::dibujar(sf::RenderWindow& ventana) {
-    std::cout << "Se esta dibujando el nivel 1" << std::endl;
-     //L骻ica de dibujar para el nivel 1
+    
+     //L贸gica de dibujar para el nivel 1
     if (nivel1Activo) {
-        presionado = false;
-        std::cout << "Selector de niveles abierto" << std::endl;
+        pos_mouse = { 0,0 };
+        
         nivel1Ventana.clear();
         imagen->loadFromFile("./nivel1_fondo.png");
         fondo->setTexture(*imagen);
         nivel1Ventana.draw(*fondo);
-        
-        cerrarVentana->setSize(sf::Vector2f(23, 26));
-        cerrarVentana->setPosition(1178, 39);
-        cerrarVentana->setFillColor(sf::Color::Black);
-        
+        cerrarNivel1->setSize(sf::Vector2f(23, 26));
+        cerrarNivel1->setPosition(1178, 39);
+        cerrarNivel1->setFillColor(sf::Color::Transparent);
+        nivel1Ventana.draw(*cerrarNivel1); // Dibujamos el rect谩ngulo cerrarVentana
+
         nivel1Ventana.display(); // Mostramos lo que hemos dibujado en la nueva ventana
     }
 }
@@ -63,5 +65,5 @@ bool NivelNivel1::estaActivo() const {
 NivelNivel1::~NivelNivel1() {
     delete imagen;
     delete fondo;
-    delete cerrarVentana;
+    delete cerrarNivel1;
 }
