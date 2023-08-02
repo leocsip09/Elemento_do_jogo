@@ -6,19 +6,26 @@
 
 class NivelNivel4 : public Nivel {
 private:
-    sf::RenderWindow nivel4Ventana; // Nueva ventana para el nivel 3
-    bool nivel4Activo; // Variable para controlar si la nueva ventana est· activa
+    sf::RenderWindow nivel4Ventana; // Nueva ventana para el nivel 4
+    bool nivel4Activo; // Variable para controlar si la nueva ventana est√° activa
+    sf::Texture* imagen;
+    sf::Sprite* fondo;
 
+    sf::RectangleShape* cerrarNivel4;
+    sf::Vector2i pos_mouse;
+    sf::Vector2f mouse_coord;
 public:
-    // Constructor del nivel 3
+    // Constructor del nivel 4
     NivelNivel4();
 
-    // Sobrescribe los mÈtodos de la clase base
+    // Sobrescribe los m√©todos de la clase base
     void inicializar() override;
     void actualizar(sf::RenderWindow& ventana) override;
     void dibujar(sf::RenderWindow& ventana) override;
 
-    // MÈtodo para verificar si la nueva ventana del nivel 3 est· activa
+    // M√©todo para verificar si la nueva ventana del nivel 4 est√° activa
     bool estaActivo() const override;
+
+    ~NivelNivel4();
 };
 
