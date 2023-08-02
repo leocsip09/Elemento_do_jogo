@@ -6,33 +6,33 @@
 #include "NivelNivel5.h"
 
 // Inicializamos el contenedor de instancias de niveles
-std::unordered_map<int, Nivel*> MultitonNivel::niveles;
+std::unordered_map<int, std::unique_ptr<Nivel>> MultitonNivel::niveles;
 
 Nivel* MultitonNivel::getNivel(int numero) {
     // Verificamos si el nivel ya ha sido creado
     auto it = niveles.find(numero);
     if (it != niveles.end()) {
         // Si el nivel ya existe, devolvemos la instancia existente
-        return it->second;
+        return it->second.get();
     }
     else {
-        // Si el nivel no existe, lo creamos y lo almacenamos en el contenedor según su número
-        Nivel* nivel = nullptr;
+        // Si el nivel no existe, lo creamos y lo almacenamos en el contenedor segÃºn su nÃºmero
+        std::unique_ptr<Nivel> nivel = nullptr;
         switch (numero) {
         case 1:
-            nivel = new NivelNivel1();
+            nivel = std::make_unique<NivelNivel1>();
             break;
         case 2:
-            nivel = new NivelNivel2();
+            nivel = std::make_unique<NivelNivel2>();
             break;
         case 3:
-            nivel = new NivelNivel3();
+            nivel = std::make_unique<NivelNivel3>();
             break;
         case 4:
-            nivel = new NivelNivel4();
+            nivel = std::make_unique<NivelNivel4>();
             break;
         case 5:
-            nivel = new NivelNivel5();
+            nivel = std::make_unique<NivelNivel5>();
             break;
         default:
             break;
@@ -40,9 +40,9 @@ Nivel* MultitonNivel::getNivel(int numero) {
 
         if (nivel) {
             nivel->inicializar();
-            niveles[numero] = nivel;
+            niveles[numero] = std::move(nivel);
         }
 
-        return nivel;
+        return niveles[numero].get();
     }
 }
