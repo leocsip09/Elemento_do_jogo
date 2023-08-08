@@ -1,7 +1,9 @@
 #include "NivelNivel5.h"
 #include <iostream>
 
-NivelNivel5::NivelNivel5() : Nivel(), nivel5Ventana(sf::VideoMode(1280, 720), "Nivel 5"), nivel5Activo(true) {
+NivelNivel5::NivelNivel5(const std::string& jugador1, const std::string& jugador2)
+    : Nivel(), nivel5Ventana(sf::VideoMode(1280, 720), "Nivel 5"), nivel5Activo(true),
+    seleccionJugador1(jugador1), seleccionJugador2(jugador2) {
     imagen = new sf::Texture();
     fondo = new sf::Sprite();
     cerrarNivel5 = new sf::RectangleShape();
@@ -10,12 +12,12 @@ NivelNivel5::NivelNivel5() : Nivel(), nivel5Ventana(sf::VideoMode(1280, 720), "N
 
 
 void NivelNivel5::inicializar() {
-    // L贸gica de inicializaci贸n para el nivel 5
+    // L骻ica de inicializaci髇 para el nivel 5
 
 }
 
 void NivelNivel5::actualizar(sf::RenderWindow& ventana) {
-    // L贸gica de actualizaci贸n para el nivel 5
+    // L骻ica de actualizaci髇 para el nivel 5
 
     if (nivel5Activo) {
         sf::Event event;
@@ -31,7 +33,7 @@ void NivelNivel5::actualizar(sf::RenderWindow& ventana) {
 
         if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
             if (cerrarNivel5->getGlobalBounds().contains(mouse_coord)) {
-                std::cout << "Nivel 4 cerrado" << '\n';
+                std::cout << "Nivel 5 cerrado" << '\n';
                 nivel5Ventana.close();
                 nivel5Activo = false;
             }
@@ -41,7 +43,7 @@ void NivelNivel5::actualizar(sf::RenderWindow& ventana) {
 
 void NivelNivel5::dibujar(sf::RenderWindow& ventana) {
 
-    //L贸gica de dibujar para el nivel 4
+    //L骻ica de dibujar para el nivel 4
     if (nivel5Activo) {
         pos_mouse = { 0,0 };
 
@@ -52,7 +54,7 @@ void NivelNivel5::dibujar(sf::RenderWindow& ventana) {
         cerrarNivel5->setSize(sf::Vector2f(23, 26));
         cerrarNivel5->setPosition(1178, 39);
         cerrarNivel5->setFillColor(sf::Color::Transparent);
-        nivel5Ventana.draw(*cerrarNivel5); // Dibujamos el rect谩ngulo cerrarVentana
+        nivel5Ventana.draw(*cerrarNivel5); // Dibujamos el rect醤gulo cerrarVentana
 
         nivel5Ventana.display(); // Mostramos lo que hemos dibujado en la nueva ventana
     }

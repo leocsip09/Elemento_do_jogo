@@ -1,7 +1,9 @@
 #include "NivelNivel4.h"
 #include <iostream>
 
-NivelNivel4::NivelNivel4() : Nivel(), nivel4Ventana(sf::VideoMode(1280, 720), "Nivel 4"), nivel4Activo(true) {
+NivelNivel4::NivelNivel4(const std::string& jugador1, const std::string& jugador2)
+    : Nivel(), nivel4Ventana(sf::VideoMode(1280, 720), "Nivel 4"), nivel4Activo(true),
+    seleccionJugador1(jugador1), seleccionJugador2(jugador2) {
     imagen = new sf::Texture();
     fondo = new sf::Sprite();
     cerrarNivel4 = new sf::RectangleShape();
@@ -10,12 +12,12 @@ NivelNivel4::NivelNivel4() : Nivel(), nivel4Ventana(sf::VideoMode(1280, 720), "N
 
 
 void NivelNivel4::inicializar() {
-    // L贸gica de inicializaci贸n para el nivel 4
+    // L骻ica de inicializaci髇 para el nivel 4
 
 }
 
 void NivelNivel4::actualizar(sf::RenderWindow& ventana) {
-    // L贸gica de actualizaci贸n para el nivel 4
+    // L骻ica de actualizaci髇 para el nivel 4
 
     if (nivel4Activo) {
         sf::Event event;
@@ -41,7 +43,7 @@ void NivelNivel4::actualizar(sf::RenderWindow& ventana) {
 
 void NivelNivel4::dibujar(sf::RenderWindow& ventana) {
 
-    //L贸gica de dibujar para el nivel 4
+    //L骻ica de dibujar para el nivel 4
     if (nivel4Activo) {
         pos_mouse = { 0,0 };
 
@@ -52,7 +54,7 @@ void NivelNivel4::dibujar(sf::RenderWindow& ventana) {
         cerrarNivel4->setSize(sf::Vector2f(23, 26));
         cerrarNivel4->setPosition(1178, 39);
         cerrarNivel4->setFillColor(sf::Color::Transparent);
-        nivel4Ventana.draw(*cerrarNivel4); // Dibujamos el rect谩ngulo cerrarVentana
+        nivel4Ventana.draw(*cerrarNivel4); // Dibujamos el rect醤gulo cerrarVentana
 
         nivel4Ventana.display(); // Mostramos lo que hemos dibujado en la nueva ventana
     }

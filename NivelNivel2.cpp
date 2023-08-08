@@ -1,7 +1,9 @@
 #include "NivelNivel2.h"
 #include <iostream>
 
-NivelNivel2::NivelNivel2() : Nivel(), nivel2Ventana(sf::VideoMode(1280, 720), "Nivel 2"), nivel2Activo(true) {
+NivelNivel2::NivelNivel2(const std::string& jugador1, const std::string& jugador2)
+    : Nivel(), nivel2Ventana(sf::VideoMode(1280, 720), "Nivel 2"), nivel2Activo(true),
+    seleccionJugador1(jugador1), seleccionJugador2(jugador2) {
     imagen = new sf::Texture();
     fondo = new sf::Sprite();
     cerrarNivel2 = new sf::RectangleShape();
@@ -10,12 +12,12 @@ NivelNivel2::NivelNivel2() : Nivel(), nivel2Ventana(sf::VideoMode(1280, 720), "N
 
 
 void NivelNivel2::inicializar() {
-    // L贸gica de inicializaci贸n para el nivel 2
+    // L骻ica de inicializaci髇 para el nivel 2
 
 }
 
 void NivelNivel2::actualizar(sf::RenderWindow& ventana) {
-    // L贸gica de actualizaci贸n para el nivel 2
+    // L骻ica de actualizaci髇 para el nivel 2
 
     if (nivel2Activo) {
         sf::Event event;
@@ -41,7 +43,7 @@ void NivelNivel2::actualizar(sf::RenderWindow& ventana) {
 
 void NivelNivel2::dibujar(sf::RenderWindow& ventana) {
 
-    //L贸gica de dibujar para el nivel 2
+    //L骻ica de dibujar para el nivel 2
     if (nivel2Activo) {
         pos_mouse = { 0,0 };
 
@@ -49,10 +51,10 @@ void NivelNivel2::dibujar(sf::RenderWindow& ventana) {
         imagen->loadFromFile("./nivel2_fondo.png");
         fondo->setTexture(*imagen);
         nivel2Ventana.draw(*fondo);
-        cerrarNivel2->setSize(sf::Vector2f(23, 26));
+        cerrarNivel2->setSize(sf::Vector2f(26, 26));
         cerrarNivel2->setPosition(1178, 39);
         cerrarNivel2->setFillColor(sf::Color::Transparent);
-        nivel2Ventana.draw(*cerrarNivel2); // Dibujamos el rect谩ngulo cerrarVentana
+        nivel2Ventana.draw(*cerrarNivel2); // Dibujamos el rect醤gulo cerrarVentana
 
         nivel2Ventana.display(); // Mostramos lo que hemos dibujado en la nueva ventana
     }

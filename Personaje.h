@@ -1,26 +1,20 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Window/Keyboard.hpp>
 #include <string>
+#include <memory>
 
 class Personaje {
-private:
-    static Personaje* instance;
-    sf::Texture texture;
-    sf::Sprite sprite;
-
-    // Constructor privado para evitar la creación de instancias desde fuera de la clase
+protected:
+    std::string tipo;
     Personaje();
 
 public:
-    // Método para obtener la instancia única del personaje
-    static Personaje* getInstance();
-
-    // Cargar la textura y configurar el sprite del personaje
-    void cargarTextura(const std::string& rutaTextura);
-
-    // Dibujar el personaje en la ventana del nivel 1
-    void dibujar(sf::RenderWindow& ventana);
-
-    // Otros métodos y funciones del personaje...
+    sf::Texture texture;
+    sf::Sprite sprite;
+    sf::Vector2f pos;
+    bool enSuelo = false;
+    virtual void dibujar(sf::RenderWindow& ventana, sf::Vector2f pos) = 0;
+    void actualizar(float deltaTime);
 };

@@ -188,6 +188,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Agua.cpp" />
+    <ClCompile Include="Elemento.cpp" />
+    <ClCompile Include="Fuego.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="MultitonNivel.cpp" />
@@ -197,9 +200,25 @@
     <ClCompile Include="NivelNivel3.cpp" />
     <ClCompile Include="NivelNivel4.cpp" />
     <ClCompile Include="NivelNivel5.cpp" />
+    <ClCompile Include="Personaje.cpp" />
+    <ClCompile Include="PersonajeAgua.cpp" />
+    <ClCompile Include="PersonajeFuego.cpp" />
+    <ClCompile Include="PersonajePlanta.cpp" />
+    <ClCompile Include="PersonajeTierra.cpp" />
+    <ClCompile Include="Planta.cpp" />
+    <ClCompile Include="Plataforma.cpp" />
+    <ClCompile Include="PlataformaAgua.cpp" />
+    <ClCompile Include="PlataformaFuego.cpp" />
+    <ClCompile Include="PlataformaPinchos.cpp" />
+    <ClCompile Include="PlataformaPlanta.cpp" />
+    <ClCompile Include="PlataformaTierra.cpp" />
     <ClCompile Include="selector_de_niveles.cpp" />
+    <ClCompile Include="Tierra.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Agua.h" />
+    <ClInclude Include="Elemento.h" />
+    <ClInclude Include="Fuego.h" />
     <ClInclude Include="menu.h" />
     <ClInclude Include="MultitonNivel.h" />
     <ClInclude Include="Nivel.h" />
@@ -208,7 +227,20 @@
     <ClInclude Include="NivelNivel3.h" />
     <ClInclude Include="NivelNivel4.h" />
     <ClInclude Include="NivelNivel5.h" />
+    <ClInclude Include="Personaje.h" />
+    <ClInclude Include="PersonajeAgua.h" />
+    <ClInclude Include="PersonajeFuego.h" />
+    <ClInclude Include="PersonajePlanta.h" />
+    <ClInclude Include="PersonajeTierra.h" />
+    <ClInclude Include="Planta.h" />
+    <ClInclude Include="Plataforma.h" />
+    <ClInclude Include="PlataformaAgua.h" />
+    <ClInclude Include="PlataformaFuego.h" />
+    <ClInclude Include="PlataformaPinchos.h" />
+    <ClInclude Include="PlataformaPlanta.h" />
+    <ClInclude Include="PlataformaTierra.h" />
     <ClInclude Include="selector_de_niveles.h" />
+    <ClInclude Include="Tierra.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
